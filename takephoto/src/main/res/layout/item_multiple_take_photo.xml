@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="position"
+            type="int" />
+
+        <variable
+            name="itemClick"
+            type="com.goach.takephoto.callback.MultipleItemClickListener" />
+
+        <variable
+            name="data"
+            type="com.goach.takephoto.entity.Image" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:onClick="@{v -> itemClick.onItemClick(data,position)}">
+
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:error="@{@color/color_F5F5F5}"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadFile="@{data.image}"
+            app:placeholder="@{@color/color_F5F5F5}" />
+
+        <View
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/shape_circle_white_stoke"
+            android:onClick="@{v -> itemClick.selectClick(data,position)}"
+            app:isShow="@{!data.isSelect()}"
+            app:layout_constraintEnd_toEndOf="@id/iv_photo"
+            app:layout_constraintTop_toTopOf="@id/iv_photo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/shape_circle_yellow"
+            android:gravity="center"
+            android:minWidth="22dp"
+            android:minHeight="22dp"
+            android:onClick="@{v -> itemClick.selectClick(data,position)}"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="@{data.selectText}"
+            android:textColor="@color/color_333333"
+            android:textSize="16sp"
+            app:isShow="@{data.isSelect()}"
+            app:layout_constraintEnd_toEndOf="@id/iv_photo"
+            app:layout_constraintTop_toTopOf="@id/iv_photo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

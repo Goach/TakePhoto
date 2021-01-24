@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.goach.takephoto.viewmodel.MultipleViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.goach.takephoto.widget.TitleBarLayout
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:title_right_text="@string/photo_album"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title_text="@string/choose_photo" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:isShow="@{viewModel.isShow}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/ll_bottom"
+            app:layout_constraintTop_toBottomOf="@id/title_bar"
+            app:spanCount="3" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:minHeight="55dp"
+            app:isShow="@{viewModel.isShowBottom}"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingEnd="15dp"
+                android:text="@string/preview"
+                android:onClick="@{v -> viewModel.previewClick()}"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/shape_yellow"
+                android:gravity="center"
+                android:onClick="@{v -> viewModel.doneSelectClick()}"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:text="@{viewModel.doneStr}"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.goach.takephoto.widget.ErrorEmptyLoadView
+            android:id="@+id/eel_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/white"
+            app:empty_res="@drawable/icon_empty"
+            app:empty_text="@string/empty_text"
+            app:error_res="@drawable/icon_error"
+            app:error_text="@string/error_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_bar" />
+
+        <FrameLayout
+            android:id="@+id/fl_preview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:isShow="@{viewModel.isShowPreview}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

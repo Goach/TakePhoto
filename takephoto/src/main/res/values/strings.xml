@@ -1,0 +1,10 @@
+<resources>
+    <string name="choose_photo">选择照片</string>
+    <string name="error_text">图片加载失败</string>
+    <string name="empty_text">暂无图片</string>
+    <string name="max_number_tip">最多可选择%s张图</string>
+    <string name="preview">预览</string>
+    <string name="done">完成(%s)</string>
+    <string name="photo_album">相册</string>
+    <string name="all">所有</string>
+</resources>

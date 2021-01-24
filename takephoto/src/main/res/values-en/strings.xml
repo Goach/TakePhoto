@@ -1,0 +1,10 @@
+<resources>
+    <string name="choose_photo">choose a photo</string>
+    <string name="error_text">Image failed to load</string>
+    <string name="empty_text">No picture</string>
+    <string name="max_number_tip">You can select up to %s pictures</string>
+    <string name="preview">Preview</string>
+    <string name="done">Done(%s)</string>
+    <string name="photo_album">Photo album</string>
+    <string name="all">All</string>
+</resources>
